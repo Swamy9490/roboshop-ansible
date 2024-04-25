@@ -46,10 +46,10 @@
 
     # let's start after the data is loaded
 
-  - name: Copy mongdb repo
+  - name: Copy mongodb repo
     ansible.builtin.copy:
       src: mongodb.repo
-      dest: etc/yum.repos.d/mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo
 
   - name: install mongodb client
     ansible.builtin.package:
