@@ -46,4 +46,21 @@
 
     # let's start after the data is loaded
 
+  - name: copy mongdb repo
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: etc/yum.repos.d/mongo.repo
+
+  - name: install mongodb client
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
+
+  - name: get the catageories count
+    ansible.builtin.command:  mongo --host mongodb.swamydevops.cloud --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+    register: product_count
+
+  - name: print the count
+    ansible.builtin.debug:
+      msg: "product count {{product_count}}"
 
