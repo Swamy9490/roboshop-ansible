@@ -61,8 +61,8 @@
       name: mongodb-org-shell
       state: present
 
-  - name: get the categories count
-    ansible.builtin.command: mongo --host mongodb.swamydevops.cloud --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+  - name: get the users count
+    ansible.builtin.command:  mongo --host mongodb.swamydevops.cloud --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
     register: user_count
 
    # - name: print the count
@@ -71,7 +71,7 @@
 
   - name: Load user data
     ansible.builtin.command: mongo --host mongodb.swamydevops.cloud < /app/schema/user.js
-    when: produuct_count.stdout == "0" # keep double quotes
+    when: user_count.stdout == "0" # keep double quotes
 
   - name: start and enable user
     ansible.builtin.service:
