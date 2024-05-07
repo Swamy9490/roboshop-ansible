@@ -20,13 +20,13 @@
 
   - name: create app directory
     ansible.builtin.file:
-    path: /app
-    state: directory
+      path: /app
+      state: directory
 
   - name: download shipping application
     ansible.builtin.get_url:
-    url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
-    dest: /tmp
+      url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+      dest: /tmp
 
   - name: extract shipping application
     ansible.builtin.unarchive:
